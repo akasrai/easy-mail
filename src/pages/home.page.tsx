@@ -6,7 +6,6 @@ import MainLayout from 'ui/main.layout';
 import { ROUTE } from 'app/app.route-path';
 import { AuthContext } from 'app/app.context';
 import CreateEmail from './components/create-email.component';
-import { WarningAlert } from 'ui/alert/inline-alert';
 
 const HomePage = () => {
   const { isAuthenticated, email } = useContext(AuthContext);

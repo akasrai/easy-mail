@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import Routes from './app.routes';
 import useAuth from './app.hooks';
 import { AuthContextProvider } from './app.context';
+import GithubCornerLink from 'ui/icons/github-link-icon';
 
 const GettingThingsReady = () => {
   return (
@@ -21,6 +22,7 @@ function App() {
     <Suspense fallback={<GettingThingsReady />}>
       <AuthContextProvider value={currentAuth}>
         <Routes />
+        <GithubCornerLink />
       </AuthContextProvider>
     </Suspense>
   );

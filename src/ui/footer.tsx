@@ -9,7 +9,11 @@ const Footer = () => (
     <span className=" col-12 mt-4 text-center">
       &copy; {new Date().getFullYear()} Easy
       <span className="bold">Mail </span>by{' '}
-      <a href="https://akasrai.github.io/" target="_blank">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://akasrai.github.io/"
+      >
         Akas
       </a>
     </span>
