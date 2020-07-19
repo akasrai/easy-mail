@@ -77,7 +77,7 @@ const Header = () => {
           <Link to={ROUTE.HOME} className="d-flex text-primary">
             <i className="icon ion-md-mail-open lead mr-2 m-0" />
             <span className="lead">
-              EM <span className="bold">M</span>
+              Easy<span className="bold">Mail</span>
             </span>
           </Link>
         </div>
