@@ -44,11 +44,6 @@ const CreateEmail = ({ className }: { className?: string }) => {
   };
 
   const isEmailValid = (email: string) => {
-    if (!/^\S*$/.test(email)) {
-      setError('Username cannot contain white-spaces.');
-      return false;
-    }
-
     if (!email) {
       setError('Email is not yet generated.');
       return false;
@@ -56,6 +51,15 @@ const CreateEmail = ({ className }: { className?: string }) => {
 
     if (emailExists(email)) {
       setError('Email already exists.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const isUsernameValid = (username: string) => {
+    if (!/^$|^[^*!#|":<>[\]{}`\\()';@&$%^]+$/.test(username)) {
+      setError('Invalid characters.');
       return false;
     }
 
@@ -94,7 +98,7 @@ const CreateEmail = ({ className }: { className?: string }) => {
     const nameSpace = process.env.REACT_APP_TEST_MAIL_NAMESPACE;
     const generatedEmail = `${nameSpace}.${username}@inbox.testmail.app`;
 
-    if (isEmailValid(generatedEmail)) {
+    if (isUsernameValid(username) && isEmailValid(generatedEmail)) {
       setError('');
       setEmail(generatedEmail);
     }
@@ -118,7 +122,10 @@ const CreateEmail = ({ className }: { className?: string }) => {
     <form className={className} onSubmit={handleSubmit}>
       <ErrorAlert message={error} />
       <Input
+        min={1}
+        max={8}
         type="text"
+        required={true}
         name="username"
         placeholder="username"
         onChange={generateEmail}
