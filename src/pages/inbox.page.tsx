@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import { Flex } from 'ui/flex';
+import { FlexRow } from 'ui/flex';
 import MainLayout from 'ui/main.layout';
 
 import { AuthContext } from 'app/app.context';
@@ -10,6 +10,15 @@ import { getMails, listenIncomingMails } from 'api/request.api';
 
 import EmailList from './components/email-list.component';
 import SingleView, { Empty } from './components/view-email.component';
+import { isMobileScreen } from 'helper/device-helper';
+
+interface InboxPageProps {
+  loading: boolean;
+  emails: Array<Email>;
+  selectedEmail: Email | undefined;
+  viewEmailById: (id: string) => void;
+  selectEmail: (email: Email | undefined) => void;
+}
 
 const getUserName = (email: string) => {
   const nameSpace = process.env.REACT_APP_TEST_MAIL_NAMESPACE || '';
@@ -57,10 +66,53 @@ const InboxPage = () => {
     if (synced && currentUser !== userEmailId) fetchOldMails();
   }, [emails, userEmailId]);
 
+  if (isMobileScreen())
+    return (
+      <MobilePage
+        emails={emails}
+        loading={loading}
+        selectEmail={selectEmail}
+        viewEmailById={viewEmailById}
+        selectedEmail={selectedEmail}
+      />
+    );
+
+  return (
+    <WebPage
+      emails={emails}
+      loading={loading}
+      selectEmail={selectEmail}
+      viewEmailById={viewEmailById}
+      selectedEmail={selectedEmail}
+    />
+  );
+};
+
+const MobilePage = (props: InboxPageProps) => {
+  const { emails, loading, selectEmail, viewEmailById, selectedEmail } = props;
+
   return (
     <MainLayout>
-      <Flex className="justify-content-between">
-        <div className="col-md-4 p-0 p-sticky">
+      {selectedEmail ? (
+        <SingleView selectEmail={selectEmail} email={selectedEmail} />
+      ) : (
+        <EmailList
+          emails={emails}
+          loading={loading}
+          viewEmailById={viewEmailById}
+        />
+      )}
+    </MainLayout>
+  );
+};
+
+const WebPage = (props: InboxPageProps) => {
+  const { emails, loading, selectEmail, viewEmailById, selectedEmail } = props;
+
+  return (
+    <MainLayout>
+      <FlexRow className="justify-content-between">
+        <div className="col-md-4 p-0">
           <EmailList
             emails={emails}
             loading={loading}
@@ -69,12 +121,12 @@ const InboxPage = () => {
         </div>
         <div className="col-md-8 p-0">
           {selectedEmail ? (
-            <SingleView email={selectedEmail} />
+            <SingleView selectEmail={selectEmail} email={selectedEmail} />
           ) : (
             <Empty message="No Email Selected" />
           )}
         </div>
-      </Flex>
+      </FlexRow>
     </MainLayout>
   );
 };

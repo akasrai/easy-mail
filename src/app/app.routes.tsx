@@ -20,7 +20,6 @@ export const PrivateRoute = withRouter(AuthenticatedRoute);
 
 const NonAuthenticatedRoute = (props: any) => {
   // const { isAuthenticated } = useContext(AuthContext);
-
   // if (isAuthenticated) return <Redirect to={ROUTE.INBOX} />;
 
   return <Route {...props} />;

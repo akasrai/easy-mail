@@ -39,7 +39,10 @@ const SavedEmailList = () => {
     <div className="user-tool">
       <i className="icon ion-md-contact h3 m-0 pt-2 text-muted" />
       <button className="bold p user-tool-btn">
-        <span className="d-inline text-muted">{email}</span>
+        <span className="d-inline d-md-none text-muted">
+          {email.split('@')[0]}
+        </span>
+        <span className="d-none d-md-inline text-muted">{email}</span>
         <i className="icon ion-ios-arrow-down ml-2 text-primary" />
         <div className="dropdown text-muted">
           <div className="list">
@@ -71,7 +74,7 @@ const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <header className="col-md-12 p-0 pt-4 pb-3">
+    <header className="col-md-12 p-3 pl-md-0 pr-md-0">
       <Flex className="justify-content-between text-white">
         <div className="col-md-3 p-0 pt-2">
           <Link to={ROUTE.HOME} className="d-flex text-primary">

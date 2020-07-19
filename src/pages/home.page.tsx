@@ -12,7 +12,7 @@ const HomePage = () => {
 
   return (
     <MainLayout>
-      <div className="col-md-5 p-0 m-auto">
+      <div className="col-md-5 p-3 p-md-0 m-auto">
         {isAuthenticated && (
           <div className="alert alert-info p-2 mt-4 small">
             Hi! <strong>{email}</strong>.<br /> You are already loged in, click{' '}
@@ -28,11 +28,10 @@ const HomePage = () => {
         </h3>
         <span className="small text-center mb-4 d-block text-muted">
           All you need is enter a username and start receiving the emails right
-          away. <br />
-          Cheers ✨🎉
+          away. Cheers ✨🎉
         </span>
+        <CreateEmail className="col-md-12 p-0 mb-3" />
       </div>
-      <CreateEmail className="col-md-5 p-0 m-auto" />
     </MainLayout>
   );
 };

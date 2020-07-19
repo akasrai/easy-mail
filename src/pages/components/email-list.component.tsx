@@ -22,7 +22,7 @@ const EmailListHeader = () => {
 
   return (
     <FlexRow className="justify-content-between text-primary border-bottom pb-1">
-      <div>
+      <div className="pl-3 pr-3 pl-md-0 pr-md-0">
         <span className="title w-100">
           <span className="mr-1">Inbox</span>
           <ListeningSignal className="listening-signal" />

@@ -40,6 +40,10 @@ a {
 
 header {
   border-bottom: 1px solid #efefef;
+
+  @media screen and (max-width: 767px) {
+    background-color: rgb(238, 238, 238);
+  }
 }
 
 .f-large {
@@ -166,6 +170,7 @@ img {
 
 img.logo {
   height: 42px;
+
   @media screen and (max-width: 767px) {
     height: 32px;
   }
@@ -381,6 +386,7 @@ img.logo {
     border: 0;
     outline: 0;
     cursor: pointer;
+    margin-top: 5px;
     background: transparent;
 
     &:focus,
@@ -502,6 +508,10 @@ img.logo {
 .inbox-sidebar {
   border-right: 1px solid #efefef;
 
+  @media screen and (max-width: 767px) {
+    border: none;
+  }
+
   .title {
     width: 100%;
     display: flex;
@@ -582,7 +592,7 @@ img.logo {
 }
 
 .email-view {
-  height: 86vh;
+  height: 76vh;
   overflow: hidden;
   overflow-y: scroll;
 
@@ -713,5 +723,18 @@ img.logo {
   }
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+.email-action {
+  font-size: 20px;
+  padding: 15px 30px;
+  border-bottom: 1px solid #dee2e6;
+
+  i {
+    &:hover {
+      color: blue;
+      cursor: pointer;
+    }
   }
 }
