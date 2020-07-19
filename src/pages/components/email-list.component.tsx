@@ -1,9 +1,9 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 
 import { FlexRow } from 'ui/flex';
-import { ListeningSignal } from 'ui/icons/loading-icon';
+import { ListeningSignal, BlinkTextLoader } from 'ui/icons/loading-icon';
 
 import { ROUTE } from 'app/app.route-path';
 import { AuthContext } from 'app/app.context';
@@ -12,6 +12,7 @@ import { Email } from 'api/api.type';
 import { Empty } from './view-email.component';
 
 interface EmailListProps {
+  loading: boolean;
   emails: Array<Email>;
   viewEmailById: (param: string) => void;
 }
@@ -46,34 +47,44 @@ const EmailListHeader = () => {
   );
 };
 
-const EmailList = ({ emails, viewEmailById }: EmailListProps) => (
+const EmailList = ({ emails, loading, viewEmailById }: EmailListProps) => (
   <div className="col-md-12 p-0 inbox-sidebar">
     <EmailListHeader />
     <div className="inbox">
-      {emails.length > 0 ? (
-        emails.map((email, key) => (
-          <div key={key} onClick={() => viewEmailById(email.messageId)}>
-            <FlexRow className="inbox-row">
-              <div className="col-md-9 p-0">
-                <span className="d-block">
-                  {email.from_parsed[0].name ||
-                    email.from_parsed[0].address.split('@')[0]}
-                </span>
-                <span className="d-block small subject">{email.subject}</span>
+      {loading && (
+        <BlinkTextLoader className="pt-4" message="Loading emails..." />
+      )}
+
+      {!loading && (
+        <Fragment>
+          {emails.length > 0 ? (
+            emails.map((email, key) => (
+              <div key={key} onClick={() => viewEmailById(email.messageId)}>
+                <FlexRow className="inbox-row">
+                  <div className="col-md-9 p-0">
+                    <span className="d-block">
+                      {email.from_parsed[0].name ||
+                        email.from_parsed[0].address.split('@')[0]}
+                    </span>
+                    <span className="d-block small subject">
+                      {email.subject}
+                    </span>
+                  </div>
+                  <div className="col-md-3 p-0 pl-3 email-date-time">
+                    <span className="d-block">
+                      {moment.utc(email.date).local().format('MMM DD, YYYY')}
+                    </span>
+                    <span className="d-block">
+                      {moment.utc(email.date).local().format('h:mm A')}
+                    </span>
+                  </div>
+                </FlexRow>
               </div>
-              <div className="col-md-3 p-0 pl-3 email-date-time">
-                <span className="d-block">
-                  {moment.utc(email.date).local().format('MMM DD, YYYY')}
-                </span>
-                <span className="d-block">
-                  {moment.utc(email.date).local().format('h:mm A')}
-                </span>
-              </div>
-            </FlexRow>
-          </div>
-        ))
-      ) : (
-        <Empty message="Your inbox is empty" />
+            ))
+          ) : (
+            <Empty message="Your inbox is empty" />
+          )}
+        </Fragment>
       )}
     </div>
   </div>

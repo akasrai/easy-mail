@@ -20,6 +20,7 @@ const getUserName = (email: string) => {
 const InboxPage = () => {
   const userEmailId = useContext(AuthContext).email;
   const [synced, setSynced] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedEmail, selectEmail] = useState<Email>();
   const [emails, setEmails] = useState<Array<Email>>([]);
   const [currentUser, setCurrentUser] = useState<string>(userEmailId);
@@ -39,6 +40,7 @@ const InboxPage = () => {
     };
 
     const fetchOldMails = async () => {
+      setLoading(true);
       const mails: MailResponse = (await getMails(
         getUserName(userEmailId)
       )) as MailResponse;
@@ -46,6 +48,7 @@ const InboxPage = () => {
       setSynced(true);
       selectEmail(undefined);
       setEmails([...mails.inbox.emails]);
+      setLoading(false);
     };
 
     if (!synced) fetchOldMails();
@@ -58,7 +61,11 @@ const InboxPage = () => {
     <MainLayout>
       <Flex className="justify-content-between">
         <div className="col-md-4 p-0 p-sticky">
-          <EmailList emails={emails} viewEmailById={viewEmailById} />
+          <EmailList
+            emails={emails}
+            loading={loading}
+            viewEmailById={viewEmailById}
+          />
         </div>
         <div className="col-md-8 p-0">
           {selectedEmail ? (
