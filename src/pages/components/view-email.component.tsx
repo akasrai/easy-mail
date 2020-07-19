@@ -57,7 +57,10 @@ const SingleView = ({ email, selectEmail }: SingleViewProps) => {
             </span>
           </div>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: email?.html || '' }} />
+        <div
+          className="col-12 p-0"
+          dangerouslySetInnerHTML={{ __html: email?.html || '' }}
+        />
         <Footer />
       </div>
     </Fragment>

@@ -593,8 +593,7 @@ img.logo {
 
 .email-view {
   height: 76vh;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: auto;
 
   &::-webkit-scrollbar {
     background-color: #fff;
