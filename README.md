@@ -1,6 +1,8 @@
 ### EasyMail
 
-EasyMail is a simple tool for generating temporary emails for testing. EasyMail uses [test mail](https://testmail.app/) api for generating the emails.
+[EasyMail](https://easy-mail.vercel.app/) is a simple tool for generating temporary emails for testing. EasyMail uses [test mail](https://testmail.app/) api for generating the emails.
+
+Vist https://easy-mail.vercel.app for demo.
 
 ### Features
 
