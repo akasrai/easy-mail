@@ -46,16 +46,16 @@ const InboxPage = () => {
       )) as MailResponse;
 
       setSynced(true);
-      selectEmail(undefined);
-      setEmails([...mails.inbox.emails]);
       setLoading(false);
+      selectEmail(undefined);
+      setCurrentUser(userEmailId);
+      setEmails([...mails.inbox.emails]);
     };
 
     if (!synced) fetchOldMails();
     if (synced && currentUser === userEmailId) subscribeLiveMails();
     if (synced && currentUser !== userEmailId) fetchOldMails();
-    if (currentUser !== userEmailId) setCurrentUser(userEmailId);
-  }, [emails, synced, currentUser, userEmailId]);
+  }, [emails, userEmailId]);
 
   return (
     <MainLayout>
