@@ -6,8 +6,10 @@ Vist https://easy-mail.vercel.app for demo.
 
 ### Features
 
-- Generate random emails
+- Generate unlimited email addresses
 - Receive emails (live)
+- 3 days retention
+- Spam score and report
 
 ### Installation
 
