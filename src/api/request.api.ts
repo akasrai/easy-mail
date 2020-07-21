@@ -61,6 +61,8 @@ export const getMails = (username: string) => {
               text
               subject
               messageId
+              spam_score
+              spam_report
               to_parsed{
                 name
                 group

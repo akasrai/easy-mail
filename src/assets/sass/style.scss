@@ -726,14 +726,26 @@ img.logo {
 }
 
 .email-action {
-  font-size: 20px;
-  padding: 15px 30px;
+  font-size: 21px;
+  padding: 12px 30px;
   border-bottom: 1px solid #dee2e6;
 
   i {
+    margin-top: 5px;
+    margin-right: 25px;
+
     &:hover {
       color: blue;
       cursor: pointer;
     }
+  }
+
+  .spam-score {
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 7px 16px;
+    line-height: 22px;
+    border-radius: 20px;
   }
 }

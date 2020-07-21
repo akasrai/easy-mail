@@ -10,6 +10,7 @@ import { getMails, listenIncomingMails } from 'api/request.api';
 
 import EmailList from './components/email-list.component';
 import SingleView, { Empty } from './components/view-email.component';
+
 import { isMobileScreen } from 'helper/device-helper';
 
 interface InboxPageProps {

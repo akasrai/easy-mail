@@ -33,11 +33,21 @@ const SingleView = ({ email, selectEmail }: SingleViewProps) => {
   return (
     <Fragment>
       <div className="email-action">
-        <i
-          title="Back"
-          className="icon ion-md-arrow-back"
-          onClick={() => selectEmail(undefined)}
-        />
+        <div className="d-flex">
+          <i
+            title="Back"
+            className="icon ion-md-arrow-back"
+            onClick={() => selectEmail(undefined)}
+          />
+          <span
+            className={`spam-score ${
+              email.spam_score > 5 ? 'bg-danger' : 'bg-success'
+            }`}
+            title={email.spam_report}
+          >
+            Spam Score: <strong>{email.spam_score}</strong>
+          </span>
+        </div>
       </div>
       <div className="col-md-12 p-3 pl-md-5 email-view">
         <div className="d-none d-md-block text-muted pl-5 p">

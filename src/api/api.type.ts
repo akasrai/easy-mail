@@ -17,6 +17,8 @@ export interface Email {
   text: string;
   subject: string;
   messageId: string;
+  spam_score: number;
+  spam_report: string;
   from_parsed: Array<FromParsed>;
 }
 
