@@ -20,6 +20,8 @@ export const listenIncomingMails = (username: string) => {
               text
               subject
               messageId
+              spam_score
+              spam_report
               from_parsed{
                 name
                 group
