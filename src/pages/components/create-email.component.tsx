@@ -123,7 +123,7 @@ const CreateEmail = ({ className }: { className?: string }) => {
       <ErrorAlert message={error} />
       <Input
         min={1}
-        max={8}
+        max={15}
         type="text"
         required={true}
         name="username"
