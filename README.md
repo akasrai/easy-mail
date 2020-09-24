@@ -40,4 +40,4 @@ npm start
 
 ---
 
-Created with 💓 and ReactJs
+Created with 💓 and ReactJS
