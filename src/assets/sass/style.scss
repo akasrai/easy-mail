@@ -463,6 +463,7 @@ img.logo {
       .list {
         padding: 5px 15px;
         font-weight: 100;
+        width: 100%;
 
         &:hover {
           background-color: #dbe1e8;
@@ -747,5 +748,13 @@ img.logo {
     padding: 7px 16px;
     line-height: 22px;
     border-radius: 20px;
+  }
+}
+
+.delete-email {
+  color: rgb(228, 20, 20);
+
+  &:hover {
+    color: rgb(170, 6, 6);
   }
 }

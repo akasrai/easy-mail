@@ -9,8 +9,17 @@ import { ROUTE } from 'app/app.route-path';
 import { AuthContext } from 'app/app.context';
 
 import { LS } from 'helper/local-storage-helper';
+import history from 'app/app.history';
+import { ApiResponse } from 'api/api.type';
+
+const isPage = (page: string) => {
+  const currentPage = window.location.pathname;
+
+  return currentPage === page;
+};
 
 const SavedEmailList = () => {
+  const [deleted, setDeleted] = useState<Boolean>(false);
   const [emails, setEmails] = useState<Array<string>>([]);
   const { email, setCurrentAuth } = useContext(AuthContext);
   const [authState, dispatch] = useReducer(app.reducer, app.initialState);
@@ -28,12 +37,22 @@ const SavedEmailList = () => {
       type: app.SIGN_IN_SUCCESS,
       payload: { email },
     });
+
+    history.push(ROUTE.INBOX);
+  };
+
+  const removeEmail = (email: string) => {
+    const { data }: ApiResponse = LS.get(LS_KEY.EMAILS);
+    const emails = data.filter((e: string) => e !== email);
+
+    LS.set(LS_KEY.EMAILS, emails);
+    setDeleted(!deleted);
   };
 
   useEffect(() => {
     getEmails();
     if (authState.isAuthenticated) setCurrentAuth(authState);
-  }, [authState, setCurrentAuth, email]);
+  }, [authState, setCurrentAuth, email, deleted]);
 
   return (
     <div className="user-tool">
@@ -46,22 +65,41 @@ const SavedEmailList = () => {
         <i className="icon ion-ios-arrow-down ml-2 text-primary" />
         <div className="dropdown text-muted">
           <div className="list">
-            <Link
-              to={ROUTE.HOME}
-              className="w-100 btn btn-md btn-outline-danger p-1"
-            >
-              <span className="small">Create New</span>
-            </Link>
+            {isPage(ROUTE.INBOX) && (
+              <Link
+                to={ROUTE.HOME}
+                className="w-100 btn btn-md btn-outline-danger p-1"
+              >
+                <span className="small">Create New</span>
+              </Link>
+            )}
+
+            {isPage(ROUTE.HOME) && (
+              <Link
+                to={ROUTE.INBOX}
+                className="w-100 btn btn-md btn-outline-danger p-1"
+              >
+                <span className="small">Inbox</span>
+              </Link>
+            )}
           </div>
 
-          {emails.map((email, key) => (
+          {emails.map((emailId, key) => (
             <div
               key={key}
-              className="list shake"
-              onClick={() => switchAuth(email)}
+              className="d-flex align-items-baseline justify-content-between"
             >
-              <i className="icon ion-md-mail mr-2 m-0 d-inline-block" />
-              {email}
+              <div className="list shake" onClick={() => switchAuth(emailId)}>
+                <i className="icon ion-md-mail mr-2 m-0 d-inline-block" />
+                {emailId}
+              </div>
+              {emailId !== email && (
+                <i
+                  title="Delete"
+                  onClick={() => removeEmail(email)}
+                  className="icon ion-md-trash m-0 d-inline-block pr-3 pl-2 delete-email"
+                />
+              )}
             </div>
           ))}
         </div>

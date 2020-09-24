@@ -28,7 +28,13 @@ const HomePage = () => {
         </h3>
         <span className="small text-center mb-4 d-block text-muted">
           All you need is enter a username and start receiving the emails right
-          away. Cheers ✨🎉
+          away. Cheers{' '}
+          <span role="img" aria-label="star">
+            ✨
+          </span>
+          <span role="img" aria-label="celebrate">
+            🎉
+          </span>
         </span>
         <CreateEmail className="col-md-12 p-0 mb-3" />
       </div>
