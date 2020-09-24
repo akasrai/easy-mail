@@ -96,7 +96,7 @@ const SavedEmailList = () => {
               {emailId !== email && (
                 <i
                   title="Delete"
-                  onClick={() => removeEmail(email)}
+                  onClick={() => removeEmail(emailId)}
                   className="icon ion-md-trash m-0 d-inline-block pr-3 pl-2 delete-email"
                 />
               )}
