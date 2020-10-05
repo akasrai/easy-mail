@@ -15,8 +15,8 @@ const HomePage = () => {
       <div className="col-md-5 p-3 p-md-0 m-auto">
         {isAuthenticated && (
           <div className="alert custom-alert-info p-2 mt-4 small">
-            Hello, <strong>{email}</strong>
-            <br /> you are already logged in.
+            Hello! <strong>{email}, </strong>
+            you are already logged in. Click to
             <Link className="bold" to={ROUTE.INBOX}>
               Check Inbox
             </Link>
