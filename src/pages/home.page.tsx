@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 
-import MainLayout from 'ui/main.layout';
+import MainLayout from "ui/main.layout";
 
-import { ROUTE } from 'app/app.route-path';
-import { AuthContext } from 'app/app.context';
-import CreateEmail from './components/create-email.component';
+import { ROUTE } from "app/app.route-path";
+import { AuthContext } from "app/app.context";
+import CreateEmail from "./components/create-email.component";
 
 const HomePage = () => {
   const { isAuthenticated, email } = useContext(AuthContext);
@@ -14,12 +14,12 @@ const HomePage = () => {
     <MainLayout>
       <div className="col-md-5 p-3 p-md-0 m-auto">
         {isAuthenticated && (
-          <div className="alert alert-info p-2 mt-4 small">
-            Hi! <strong>{email}</strong>.<br /> You are already loged in, click{' '}
-            <Link className="bold mr-1" to={ROUTE.INBOX}>
-              here
+          <div className="alert custom-alert-info p-2 mt-4 small">
+            Hello, <strong>{email}</strong>
+            <br /> you are already logged in.
+            <Link className="bold" to={ROUTE.INBOX}>
+              Check Inbox
             </Link>
-            to check your inbox.
           </div>
         )}
         <h3 className="text-center text-primary mt-5 mb-0">
@@ -28,7 +28,7 @@ const HomePage = () => {
         </h3>
         <span className="small text-center mb-4 d-block text-muted">
           All you need is enter a username and start receiving the emails right
-          away. Cheers{' '}
+          away. Cheers{" "}
           <span role="img" aria-label="star">
             ✨
           </span>
