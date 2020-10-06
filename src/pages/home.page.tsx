@@ -16,10 +16,14 @@ const HomePage = () => {
         {isAuthenticated && (
           <div className="alert custom-alert-info p-2 mt-4 small">
             Hello! <strong>{email}, </strong>
-            you are already logged in. Click to
-            <Link className="bold" to={ROUTE.INBOX}>
-              Check Inbox
-            </Link>
+            you are already logged in. <br />
+            <div className="check-inbox-btn">
+              {" "}
+              Click to
+              <Link className="bold" to={ROUTE.INBOX}>
+                Check Inbox
+              </Link>
+            </div>
           </div>
         )}
         <h3 className="text-center text-primary mt-5 mb-0">

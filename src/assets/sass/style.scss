@@ -763,16 +763,24 @@ img.logo {
   color: $color-sea-green;
   word-spacing: 0.25px;
   background-color: $color-ice-blue;
+  border: 1px solid #0c5460;
 
   strong {
     color: $color-blue;
+  }
+
+  .check-inbox-btn {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
   }
 
   a {
     color: white;
     margin-left: 5px;
     padding: 2px 5px;
-    line-height: 19px;
+    line-height: 16px;
     font-size: 0.7rem;
     border-radius: 3px;
     vertical-align: top;
